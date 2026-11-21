@@ -1,0 +1,89 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "intrinsic-alpha",
+  "version": "1.0.0",
+  "description": "Stock valuation and fundamental research for U.S.-listed stocks: Intrinsic Alpha's DCF intrinsic values, financial statements, multi-year trends, analyst estimates, ratings, peers, revenue segments, and financial health scores, with interactive valuation cards and charts.",
+  "author": {
+    "name": "Intrinsic Alpha",
+    "url": "https://intrinsicalpha.com"
+  },
+  "homepage": "https://intrinsicalpha.com/mcp-server",
+  "repository": "https://github.com/IntrinsicAlpha/skills",
+  "license": "MIT",
+  "keywords": ["stocks", "valuation", "dcf", "intrinsic-value", "fundamentals", "investing", "finance", "mcp"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Intrinsic Alpha",
+        "shortDescription": "DCF values and stock research",
+        "longDescription": "Bring Intrinsic Alpha's stock research into the conversation. Ask whether a U.S.-listed company trades above or below its intrinsic value and get Intrinsic Alpha's system DCF valuation as an interactive card: intrinsic value, current price, margin of safety, and the value from each model with its assumptions. Chart revenue, earnings, free cash flow, margins, and returns over up to ten years with year-over-year change and CAGR. Read annual and quarterly financial statements, consensus estimates and price targets, analyst ratings, peers, revenue segments, and Piotroski and Altman scores, or ask Intrinsic Alpha's research agent for a written analysis with sources.\n\nSign in with your Intrinsic Alpha account; free accounts can connect. Data tools are unmetered. Intrinsic values and AI analyses use the same weekly allowances as the website, and every answer links to the report so you can check figures and adjust assumptions. Research data, not investment advice.",
+        "developerName": "Intrinsic Alpha",
+        "category": "Finance",
+        "websiteURL": "https://intrinsicalpha.com/mcp-server",
+        "supportURL": "https://intrinsicalpha.com/contact",
+        "privacyPolicyURL": "https://intrinsicalpha.com/privacy-policy",
+        "termsOfServiceURL": "https://intrinsicalpha.com/terms-of-service",
+        "defaultPrompt": [
+          "Is Microsoft trading above or below its intrinsic value?",
+          "Chart Apple's revenue and free cash flow over the last five years.",
+          "How does Coca-Cola compare with PepsiCo on margins and valuation?"
+        ],
+        "brandColor": "#2563EB",
+        "brandColorDark": "#60A5FA",
+        "logo": "./assets/app-icon.svg",
+        "composerIcon": "./assets/mark.svg",
+        "composerIconDark": "./assets/mark-white.svg"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Valuation of the free demo ticker renders the valuation card without using an unlock.",
+              "prompt": "What is Apple's intrinsic value according to Intrinsic Alpha?",
+              "tools_triggered": ["get_intrinsic_value"],
+              "expected_behavior": "Calls get_intrinsic_value for AAPL, shows the valuation card, and reports intrinsic value, current price, margin of safety, and the primary model's assumptions with a link to the DCF report. No weekly unlock is used because AAPL is the demo ticker."
+            },
+            {
+              "description": "Multi-year trend renders the financial history chart.",
+              "prompt": "Chart Apple's revenue, net income, and free cash flow for the last five years.",
+              "tools_triggered": ["get_financial_history"],
+              "expected_behavior": "Calls get_financial_history with revenue, net_income, and free_cash_flow over five annual periods, shows the interactive chart, and summarizes the direction and CAGR using the returned values."
+            },
+            {
+              "description": "Company name is resolved to a ticker before fetching data.",
+              "prompt": "Give me a quick snapshot of Costco: valuation multiples, margins, and latest annual results.",
+              "tools_triggered": ["search_stocks", "get_stock_snapshot"],
+              "expected_behavior": "Resolves Costco to NASDAQ:COST if needed, calls get_stock_snapshot, and reports P/E, EV/EBITDA, margins, revenue, net income, and free cash flow for the latest fiscal year with the report link."
+            },
+            {
+              "description": "Analyst expectations combine estimates and ratings.",
+              "prompt": "What do analysts expect for Amazon's revenue and EPS next year, and how are they rating the stock?",
+              "tools_triggered": ["get_estimates", "get_analyst_ratings"],
+              "expected_behavior": "Calls get_estimates and get_analyst_ratings for AMZN and reports consensus revenue and EPS with low and high ranges and analyst counts, price targets, and the buy, hold, and sell breakdown."
+            },
+            {
+              "description": "Plan allowance check before spending unlocks.",
+              "prompt": "How many intrinsic value unlocks and AI prompts do I have left this week?",
+              "tools_triggered": ["get_usage"],
+              "expected_behavior": "Calls get_usage and reports the plan, remaining intrinsic value unlocks, remaining AI assistant prompts, and when they reset."
+            }
+          ],
+          "negative": [
+            {
+              "description": "General knowledge unrelated to stocks.",
+              "prompt": "What's a good recipe for banana bread?"
+            },
+            {
+              "description": "Trade execution is out of scope; the plugin is read-only research.",
+              "prompt": "Buy 10 shares of Tesla for me at market price."
+            },
+            {
+              "description": "Cryptocurrency prices are not covered.",
+              "prompt": "What is the current price of Bitcoin?"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

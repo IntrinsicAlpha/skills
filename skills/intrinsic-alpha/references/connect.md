@@ -67,9 +67,17 @@ Add this to `.vscode/mcp.json`:
 }
 ```
 
-## Codex CLI
+## Codex
 
-Add this to `~/.codex/config.toml`:
+Install the plugin, which bundles this skill and the server:
+
+```bash
+codex plugin marketplace add IntrinsicAlpha/skills
+codex plugin add intrinsic-alpha@intrinsic-alpha
+codex mcp login intrinsic-alpha
+```
+
+Or add only the server to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.intrinsic-alpha]

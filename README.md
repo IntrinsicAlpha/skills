@@ -47,6 +47,7 @@
 | **[`skills/intrinsic-alpha`](skills/intrinsic-alpha/SKILL.md)** | An [Agent Skill](https://agentskills.io) that teaches your assistant to pick the right tool, use your weekly allowances sparingly, read a DCF correctly, and cite figures with report links. |
 | **[`.mcp.json`](.mcp.json)** | The remote MCP server config: `https://intrinsicalpha.com/mcp` |
 | **[`.claude-plugin/`](.claude-plugin)** | A Claude Code plugin and marketplace that installs the skill and the server together. |
+| **[`plugin.json`](plugin.json) + [`mcp.json`](mcp.json)** | A ChatGPT and Codex plugin ([Agent Plugins](https://agent-plugins.org) format) that bundles the skill and the server, with a Codex marketplace in [`.agents/plugins/`](.agents/plugins/marketplace.json). |
 
 The skill works without the server's internals. It tells the assistant how to use the server well. The server does the work.
 
@@ -108,6 +109,16 @@ npx skills add IntrinsicAlpha/skills
 /plugin marketplace add IntrinsicAlpha/skills
 /plugin install intrinsic-alpha@intrinsic-alpha
 ```
+
+**Codex plugin** (skill and MCP server in one step):
+
+```bash
+codex plugin marketplace add IntrinsicAlpha/skills
+codex plugin add intrinsic-alpha@intrinsic-alpha
+codex mcp login intrinsic-alpha
+```
+
+**ChatGPT plugin:** install Intrinsic Alpha from the ChatGPT Plugin Directory once it is listed. Until then, add the server as a connector (step 1).
 
 **Claude.ai:** zip the [`skills/intrinsic-alpha`](skills/intrinsic-alpha) folder and upload it as a custom skill in Claude's settings.
 
