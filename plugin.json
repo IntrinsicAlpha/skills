@@ -40,31 +40,31 @@
             {
               "description": "Valuation of the free demo ticker renders the valuation card without using an unlock.",
               "prompt": "What is Apple's intrinsic value according to Intrinsic Alpha?",
-              "tools_triggered": ["get_intrinsic_value"],
+              "tools_triggered": "get_intrinsic_value",
               "expected_behavior": "Calls get_intrinsic_value for AAPL, shows the valuation card, and reports intrinsic value, current price, margin of safety, and the primary model's assumptions with a link to the DCF report. No weekly unlock is used because AAPL is the demo ticker."
             },
             {
               "description": "Multi-year trend renders the financial history chart.",
               "prompt": "Chart Apple's revenue, net income, and free cash flow for the last five years.",
-              "tools_triggered": ["get_financial_history"],
+              "tools_triggered": "get_financial_history",
               "expected_behavior": "Calls get_financial_history with revenue, net_income, and free_cash_flow over five annual periods, shows the interactive chart, and summarizes the direction and CAGR using the returned values."
             },
             {
               "description": "Company name is resolved to a ticker before fetching data.",
               "prompt": "Give me a quick snapshot of Costco: valuation multiples, margins, and latest annual results.",
-              "tools_triggered": ["search_stocks", "get_stock_snapshot"],
+              "tools_triggered": "search_stocks, get_stock_snapshot",
               "expected_behavior": "Resolves Costco to NASDAQ:COST if needed, calls get_stock_snapshot, and reports P/E, EV/EBITDA, margins, revenue, net income, and free cash flow for the latest fiscal year with the report link."
             },
             {
               "description": "Analyst expectations combine estimates and ratings.",
               "prompt": "What do analysts expect for Amazon's revenue and EPS next year, and how are they rating the stock?",
-              "tools_triggered": ["get_estimates", "get_analyst_ratings"],
+              "tools_triggered": "get_estimates, get_analyst_ratings",
               "expected_behavior": "Calls get_estimates and get_analyst_ratings for AMZN and reports consensus revenue and EPS with low and high ranges and analyst counts, price targets, and the buy, hold, and sell breakdown."
             },
             {
               "description": "Plan allowance check before spending unlocks.",
               "prompt": "How many intrinsic value unlocks and AI prompts do I have left this week?",
-              "tools_triggered": ["get_usage"],
+              "tools_triggered": "get_usage",
               "expected_behavior": "Calls get_usage and reports the plan, remaining intrinsic value unlocks, remaining AI assistant prompts, and when they reset."
             }
           ],
