@@ -1,0 +1,14 @@
+{
+  "name": "intrinsic-alpha",
+  "version": "1.0.0",
+  "description": "Stock valuation and fundamental research in Claude Code: the Intrinsic Alpha MCP server (DCF intrinsic values, financial statements, estimates, peers, charts) plus a skill that teaches Claude how to use it well.",
+  "author": {
+    "name": "Intrinsic Alpha",
+    "url": "https://intrinsicalpha.com"
+  },
+  "homepage": "https://intrinsicalpha.com/mcp-server",
+  "privacyPolicyUrl": "https://intrinsicalpha.com/privacy-policy",
+  "repository": "https://github.com/IntrinsicAlpha/skills",
+  "license": "MIT",
+  "keywords": ["stocks", "valuation", "dcf", "intrinsic-value", "fundamentals", "investing", "finance", "mcp"]
+}

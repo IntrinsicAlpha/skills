@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "intrinsic-alpha": {
+      "type": "http",
+      "url": "https://intrinsicalpha.com/mcp"
+    }
+  }
+}
