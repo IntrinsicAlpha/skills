@@ -143,7 +143,7 @@ Twelve tools on one account. Data tools are free; valuations and AI answers use 
 | Tool | What it returns | Cost |
 |---|---|---|
 | `search_stocks` | Tickers, exchanges, sectors, and report links by name or ticker | Free |
-| `get_stock_snapshot` | Profile, multiples, and the latest annual statements, ratios, and key metrics | Free |
+| `get_stock_snapshot` | Profile, multiples, the latest annual statements, ratios, and key metrics, and the growth the price implies (reverse DCF) | Free |
 | `get_financial_statements` | Annual or quarterly income statement, balance sheet, cash flow, ratios, and key metrics | Free |
 | `get_financial_history` | Up to 6 metrics over 12 periods with YoY change and CAGR, as an **interactive chart** | Free |
 | `get_estimates` | Consensus revenue and EPS estimates and price targets | Free |

@@ -24,7 +24,7 @@ If they are missing, do not invent figures. Tell the user the server is not conn
 | Tool | Use it for | Cost |
 |---|---|---|
 | `search_stocks` | Resolve a company name or ticker prefix to a ticker and exchange | Free |
-| `get_stock_snapshot` | Profile, valuation multiples, latest annual statements, ratios, and key metrics | Free |
+| `get_stock_snapshot` | Profile, valuation multiples, latest annual statements, ratios, key metrics, and the growth the price implies (reverse DCF) | Free |
 | `get_financial_statements` | Annual or quarterly income statement, balance sheet, cash flow, ratios, or key metrics | Free |
 | `get_financial_history` | One to six metrics over 2–12 periods, with YoY change and CAGR; renders a chart | Free |
 | `get_estimates` | Consensus revenue and EPS estimates and price targets | Free |
@@ -72,6 +72,7 @@ Prefer `get_peers` and `get_stock_snapshot` for each name. Value each one only a
 - `marginOfSafety` is a fraction: (intrinsic value − price) ÷ intrinsic value. `-0.86` means the price is 86% above intrinsic value, measured against intrinsic value. Positive means the stock trades below its intrinsic value.
 - Verdict bands match the website: ≥ 25% significantly undervalued, 10% to 25% undervalued, −10% to 10% fairly valued, −25% to −10% overvalued, below −25% significantly overvalued.
 - `models` holds every DCF variant: `ia_fair_value` (Intrinsic Alpha fair value), `fcff` (free cash flow to the firm), `fcff_no_capex` (FCFF before capex), `fcfe` (free cash flow to equity), and `net_income`. Each has its own `discountRate`, `growthRate`, `terminalGrowthRate`, and `yearlyGrowthRates`. A wide spread between models shows the value depends heavily on the method; say so.
+- `reverseDcf.impliedGrowth` is the yearly growth in `cashFlowMetric` that makes the model's value equal the price: what the price already assumes, not a forecast. In `get_intrinsic_value`, compare it with `reverseDcf.modelGrowth`; a higher implied rate means the price expects more growth than the model. `get_stock_snapshot` gives the implied rate for free, so use it to answer "what is priced in?" without spending an unlock.
 - Rates are fractions: `0.103` is 10.3%.
 - The valuation depends on its assumptions. Name the discount rate and growth rates, and point the user to the report, where they can change them.
 

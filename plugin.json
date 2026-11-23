@@ -56,6 +56,12 @@
               "expected_behavior": "Resolves Costco to NASDAQ:COST if needed, calls get_stock_snapshot, and reports P/E, EV/EBITDA, margins, revenue, net income, and free cash flow for the latest fiscal year with the report link."
             },
             {
+              "description": "Priced-in growth is answered with the free reverse DCF, without spending an unlock.",
+              "prompt": "What growth is already priced into Microsoft's stock?",
+              "tools_triggered": "get_stock_snapshot",
+              "expected_behavior": "Calls get_stock_snapshot for MSFT and reports reverseDcf.impliedGrowth as the yearly growth in the named cash-flow measure that the current price requires, with the horizon, terminal growth, and discount rate, and says it is not a forecast. It does not call get_intrinsic_value unless the user asks for the fair value."
+            },
+            {
               "description": "Analyst expectations combine estimates and ratings.",
               "prompt": "What do analysts expect for Amazon's revenue and EPS next year, and how are they rating the stock?",
               "tools_triggered": "get_estimates, get_analyst_ratings",

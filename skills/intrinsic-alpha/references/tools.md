@@ -37,7 +37,9 @@ Returns:
 - `latestAnnual.ratios`: gross, operating, and net margin, ROE, ROIC, debt to equity, current ratio, and dividend yield.
 - `latestAnnual.keyMetrics`: revenue, net income, free cash flow, and book value per share, plus P/E, P/S, and P/FCF.
 
-It does **not** include Intrinsic Alpha's intrinsic value; use `get_intrinsic_value` for that. Margin and return fields are usually fractions (`0.47` = 47%). Check the magnitude before you format them.
+- `reverseDcf`: the growth the current price implies under Intrinsic Alpha's model, free and identical to the stock page. It has `currency`, `currentPrice`, `cashFlowMetric` (`fcfePerShare`, `affo`, `fcfe`, or `netIncome`), `impliedGrowth`, `impliedGrowthBound` (`above` when the price needs more than 100% a year, `below` when it implies a decline of more than 50% a year; `impliedGrowth` is then `null`), `discountRate`, `terminalGrowthRate`, and `projectionYears` (5: that growth for five years, then terminal growth; 10: five years, fading to terminal growth by year 10). It holds an `unavailable` reason for banks, firm-model, and dividend-model valuations, and is `null` when the stock has no valuation.
+
+It does **not** include Intrinsic Alpha's intrinsic value or the model's own growth forecast; use `get_intrinsic_value` for those. Margin and return fields are usually fractions (`0.47` = 47%). Check the magnitude before you format them.
 
 ## get_financial_statements (free)
 
@@ -130,6 +132,7 @@ Returns:
   - `currency`, `currentPrice`, `consensusValue` (intrinsic value per share), and `marginOfSafety`
   - `avgDiscountRate`, `avgGrowthRate`, `sharesOutstanding`, `primaryModel`, and `generatedAt`
   - `models[]`: `type`, `intrinsicValue`, `discountRate`, `growthRate`, `terminalGrowthRate`, `yearlyGrowthRates`, `baseCf`, and `netDebt`
+  - `reverseDcf`: the fields described under `get_stock_snapshot`, plus `modelGrowth`, the model's own forecast expressed as the same constant yearly rate; `null` when the primary model is not eligible
 
 `valuation` is `null` with a `reason` when no system valuation exists. When the weekly limit is reached, the result has `isError: true` and `error: "weekly_intrinsic_value_limit_reached"`, together with `plan`, `resetsAt`, and `upgradeUrl`.
 
