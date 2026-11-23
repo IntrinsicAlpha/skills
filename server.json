@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.intrinsicalpha/intrinsic-alpha",
+  "title": "Intrinsic Alpha",
+  "description": "DCF intrinsic values, financial statements, estimates, and charts for U.S.-listed stocks.",
+  "websiteUrl": "https://intrinsicalpha.com/mcp-server",
+  "repository": {
+    "url": "https://github.com/IntrinsicAlpha/skills",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://intrinsicalpha.com/mcp"
+    }
+  ]
+}

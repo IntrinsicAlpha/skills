@@ -30,3 +30,16 @@ The Claude plugin directory accepts only Markdown, text, JSON, YAML, and PNG, JP
 ## skills.sh
 
 The skill appears on skills.sh automatically once people install it with `npx skills add IntrinsicAlpha/skills`. Check discovery with `npx skills add IntrinsicAlpha/skills --list`.
+
+## Official MCP Registry
+
+`server.json` lists the hosted server as `com.intrinsicalpha/intrinsic-alpha` in the [official MCP Registry](https://registry.modelcontextprotocol.io), which Glama connectors and other directories ingest.
+
+1. Install `mcp-publisher` from the registry's GitHub releases (`mcp-publisher_linux_amd64.tar.gz`).
+2. Authenticate with the `com.intrinsicalpha` namespace through DNS. The apex `intrinsicalpha.com` TXT record `v=MCPv1; k=ed25519; p=…` holds the public key, and the maintainer keeps the Ed25519 private key outside the repository:
+
+   ```sh
+   MCP_PRIVATE_KEY="$(openssl pkey -in <key.pem> -noout -text | sed -n '/priv:/,/pub:/p' | sed '1d;$d' | tr -d ' :\n')" \
+     mcp-publisher login dns --domain intrinsicalpha.com
+   ```
+3. Bump `version` in `server.json` (published versions are immutable), then run `mcp-publisher validate` and `mcp-publisher publish`. The `description` is limited to 100 characters.
