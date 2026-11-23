@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://intrinsicalpha.com/mcp-server">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/logo-white.svg">
-      <img src="assets/logo.svg" alt="Intrinsic Alpha" width="320">
+      <source media="(prefers-color-scheme: dark)" srcset="assets/logo-white.png">
+      <img src="assets/logo.png" alt="Intrinsic Alpha" width="320">
     </picture>
   </a>
 </p>

@@ -4,7 +4,13 @@ Maintainer notes for releasing the skill and plugins. Bump `version` in `plugin.
 
 ## ChatGPT and Codex Plugin Directory
 
-1. Run `./scripts/package-openai-plugin.sh`. It writes `dist/intrinsic-alpha-openai-plugin-<version>.zip`, which contains `plugin.json`, `mcp.json`, the skill, and the icons.
+1. Build the ZIP from the repository root. It contains `plugin.json`, `mcp.json`, the skill, and the icons `plugin.json` references:
+
+   ```sh
+   mkdir -p dist && rm -f dist/intrinsic-alpha-openai-plugin.zip
+   zip -qr -X dist/intrinsic-alpha-openai-plugin.zip plugin.json mcp.json skills/intrinsic-alpha \
+     assets/app-icon.png assets/mark.png assets/mark-white.png -x '*.DS_Store'
+   ```
 2. Go to https://platform.openai.com/plugins, choose **Upload new or existing plugin**, pick the verified developer identity, and upload the ZIP.
 3. Verify the domain. Serve the dashboard token as plain text at `https://intrinsicalpha.com/.well-known/openai-apps-challenge`.
 4. Connect the MCP server `https://intrinsicalpha.com/mcp` with **With MCP**. Only one server can be connected per plugin, and its URL is fixed after submission.
@@ -17,7 +23,9 @@ The test cases in `plugin.json` (`extensions.com.openai.review`) are the 5 posit
 
 ## Claude Code
 
-`.claude-plugin/marketplace.json` and `.claude-plugin/plugin.json` are validated with `claude plugin validate .`.
+`.claude-plugin/marketplace.json` and `.claude-plugin/plugin.json` are validated with `claude plugin validate .`. Submit the repository root at https://claude.ai/directory/manage as a **Plugin bundle**, and the server separately as an **MCP connector**.
+
+The Claude plugin directory accepts only Markdown, text, JSON, YAML, and PNG, JPEG, GIF, WebP, or ICO images from unverified organizations. Do not commit scripts, files starting with `#!`, package manager files, `AGENTS.md` or `CLAUDE.md`, or SVGs; keep packaging commands in this file and images as PNG.
 
 ## skills.sh
 

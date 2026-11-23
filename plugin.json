@@ -30,9 +30,9 @@
         ],
         "brandColor": "#2563EB",
         "brandColorDark": "#60A5FA",
-        "logo": "./assets/app-icon.svg",
-        "composerIcon": "./assets/mark.svg",
-        "composerIconDark": "./assets/mark-white.svg"
+        "logo": "./assets/app-icon.png",
+        "composerIcon": "./assets/mark.png",
+        "composerIconDark": "./assets/mark-white.png"
       },
       "review": {
         "test_cases": {
